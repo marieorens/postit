@@ -3,10 +3,11 @@
     <header class="header-bar">
       <div class="logo">
         <img
-          src="https://cdn.pixabay.com/photo/2016/03/31/19/56/sticky-note-1292817_1280.png"
+          src="@/assets/postit.png"
           alt="Post-it Logo"
+          class="circular-logo"
         />
-        <span class="app-name">Details 👻</span>
+        <span class="app-name">Details du post-it</span>
       </div>
       <div class="actions">
         <button class="back-btn" @click="goBack">Retour</button>
@@ -195,6 +196,21 @@ export default {
 .logo img {
   height: 35px;
   margin-right: 1rem;
+}
+
+.circular-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.circular-logo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .app-name {

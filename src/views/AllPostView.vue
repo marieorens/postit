@@ -214,6 +214,22 @@ function clearSearch() {
   padding: 1rem;
   position: relative;
 }
+
+.all-posts-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('@/assets/postit.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 300px 300px;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: -1;
+}
 .main-content {
   transition: filter 0.3s;
 }

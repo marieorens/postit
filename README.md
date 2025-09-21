@@ -1,5 +1,9 @@
 # 📝 Post-it Notes Manager
 
+<div align="center">
+  <img src="./src/assets/postit.png" alt="Post-it Logo" width="120" height="120">
+</div>
+
 > Une application web moderne de gestion de post-it développée avec Vue.js 3
 
 ![Vue.js](https://img.shields.io/badge/Vue.js-3.2.13-4FC08D?style=for-the-badge&logo=vue.js&logoColor=white)
@@ -7,7 +11,7 @@
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Pinia](https://img.shields.io/badge/Pinia-FFD859?style=for-the-badge&logo=pinia&logoColor=black)
 
-## 🎯 **À propos du projet**
+## **À propos du projet**
 
 Post-it Notes Manager est une application web interactive permettant la gestion complète de notes adhésives numériques. Développée dans le cadre du module **C-DEV-121 MVVM frameworks**, cette application démontre la maîtrise des concepts avancés de Vue.js et des architectures modernes.
 
@@ -65,7 +69,7 @@ src/
     └── integration/
 ```
 
-## 🚀 **Installation et lancement**
+##  **Installation et lancement**
 
 ### **Prérequis**
 - Node.js >= 14.0.0
@@ -114,7 +118,7 @@ npm test
 -  Services (API, notifications)
 -  Tests d'intégration
 
-## 🎯 **Concepts Vue.js démontrés**
+##  **Concepts Vue.js démontrés**
 
 ### **Composants**
 - **Single File Components** (.vue)
@@ -140,11 +144,11 @@ npm test
 - **Navigation guards** pour la sécurité
 - **Lazy loading** des composants
 
-## 👨‍💻 **Développeur**
+## **Développeur**
 
 **Orens TONON** - Étudiant Coding Academy
 
-## 📄 **Licence**
+## **Licence**
 
 Ce projet est développé dans un cadre pédagogique pour le module C-DEV-121.
 

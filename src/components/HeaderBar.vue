@@ -2,8 +2,9 @@
   <header class="header-bar">
     <div class="logo">
       <img
-        src="https://cdn.pixabay.com/photo/2016/03/31/19/56/sticky-note-1292817_1280.png"
+        src="@/assets/postit.png"
         alt="Post-it Logo"
+        class="circular-logo"
       />
       <span class="app-name">Post-it</span>
     </div>
@@ -83,6 +84,22 @@ export default {
 .logo img {
   height: 40px;
   width: auto;
+}
+
+.circular-logo {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.circular-logo:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
 .app-name {
