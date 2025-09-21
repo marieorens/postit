@@ -184,16 +184,73 @@ export default {
   .header-bar {
     flex-direction: column;
     padding: 1rem;
+    gap: 0.5rem;
+  }
+  
+  .logo {
+    align-self: flex-start;
+  }
+  
+  .logo .app-name {
+    font-size: 1.2rem;
   }
   
   .search-bar {
     max-width: 100%;
-    margin: 0.5rem 0;
+    margin: 0;
+    order: 2;
   }
   
   .actions {
     width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    order: 1;
+  }
+  
+  .create-btn, .delete-btn, .search-toggle {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-bar {
+    padding: 0.75rem;
+  }
+  
+  .logo img {
+    height: 30px;
+  }
+  
+  .logo .app-name {
+    font-size: 1.1rem;
+  }
+  
+  .actions {
     justify-content: center;
+  }
+  
+  .create-btn, .delete-btn {
+    flex: 1;
+    min-width: 0;
+    font-size: 0.8rem;
+  }
+  
+  .search-toggle {
+    flex: 0 0 auto;
+    padding: 0.5rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .header-bar {
+    padding: 1rem 1.5rem;
+  }
+  
+  .search-bar {
+    max-width: 300px;
   }
 }
 </style>

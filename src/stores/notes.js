@@ -140,7 +140,7 @@ export const useNotesStore = defineStore('notes', {
           this.notes = [];
         }
         
-        this.notes.push(newNote);
+        this.notes.unshift(newNote);
         this.saveToLocalStorage();
         return newNote;
       } catch (err) {
@@ -154,7 +154,7 @@ export const useNotesStore = defineStore('notes', {
           id: Date.now().toString(),
           _id: Date.now().toString() 
         };
-        this.notes.push(localNote);
+        this.notes.unshift(localNote);
         this.saveToLocalStorage();
         return localNote;
       } finally {

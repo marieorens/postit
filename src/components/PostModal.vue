@@ -33,11 +33,50 @@
     padding: 2.5rem 2rem 2rem 2rem;
     min-width: 340px;
     max-width: 95vw;
+    width: 100%;
+    max-width: 500px;
     min-height: 260px;
     display: flex;
     flex-direction: column;
     position: relative;
     border: 2px solid #ffd700;
+    margin: 1rem;
+}
+
+@media (max-width: 480px) {
+    .modal-card {
+        padding: 1.5rem 1rem 1rem 1rem;
+        min-width: 280px;
+        max-width: 90vw;
+        border-radius: 12px;
+        margin: 0.5rem;
+    }
+    
+    .modal-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .close-btn {
+        font-size: 1.5rem;
+    }
+    
+    .modal-input {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .modal-submit {
+        padding: 0.7rem 0;
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .modal-card {
+        padding: 2rem 1.5rem 1.5rem 1.5rem;
+        max-width: 85vw;
+        border-radius: 15px;
+    }
 }
 .modal-header {
     display: flex;

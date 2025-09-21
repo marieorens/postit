@@ -225,6 +225,44 @@ function clearSearch() {
   gap: 1.5rem;
   margin-top: 1rem;
 }
+
+@media (max-width: 480px) {
+  .all-posts-container {
+    margin: 1rem auto;
+    padding: 0.75rem;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 0.75rem;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .all-posts-container {
+    margin: 1.5rem auto;
+    padding: 0.875rem;
+  }
+  
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.375rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
 .no-posts {
   grid-column: 1 / -1;
   text-align: center;

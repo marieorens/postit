@@ -59,6 +59,46 @@ export default {
   width: 90%;
   max-width: 400px;
   overflow: hidden;
+  margin: 1rem;
+}
+
+@media (max-width: 480px) {
+  .confirmation-dialog {
+    width: 95%;
+    max-width: 320px;
+    border-radius: 6px;
+    margin: 0.5rem;
+  }
+  
+  .confirmation-header {
+    padding: 12px;
+  }
+  
+  .confirmation-header h3 {
+    font-size: 16px;
+  }
+  
+  .confirmation-body {
+    padding: 16px 12px;
+  }
+  
+  .confirmation-actions {
+    padding: 8px 12px 12px;
+    flex-direction: column-reverse;
+    gap: 8px;
+  }
+  
+  .cancel-btn, .confirm-btn {
+    width: 100%;
+    padding: 10px 16px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .confirmation-dialog {
+    width: 85%;
+    max-width: 380px;
+  }
 }
 
 .confirmation-header {
@@ -115,7 +155,6 @@ export default {
   background-color: #c82333;
 }
 
-/* Animation styles */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;

@@ -98,6 +98,37 @@ export default {
     color: black;
 }
 
+@media (max-width: 480px) {
+    #contain {
+        padding: 16px 12px 12px 12px;
+        border-radius: 8px;
+    }
+    
+    .title {
+        font-size: 0.95rem;
+        margin: 0 0 0.4rem 0;
+    }
+    
+    .content {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    #contain {
+        padding: 20px 14px 14px 14px;
+    }
+    
+    .title {
+        font-size: 1rem;
+    }
+    
+    .content {
+        font-size: 0.95rem;
+    }
+}
+
 </style>
 
 

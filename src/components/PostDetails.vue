@@ -333,4 +333,89 @@ export default {
   justify-content: center;
   z-index: 1000;
 }
+
+@media (max-width: 768px) {
+  .post-details-container {
+    margin: 1rem auto;
+    padding: 0.75rem;
+  }
+  
+  .header-bar {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0.75rem;
+  }
+  
+  .logo {
+    align-self: flex-start;
+  }
+  
+  .actions {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .card {
+    padding: 1.5rem;
+  }
+  
+  .card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .description {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .post-details-container {
+    margin: 0.5rem auto;
+    padding: 0.5rem;
+  }
+  
+  .header-bar {
+    padding: 0.5rem;
+    border-radius: 8px;
+  }
+  
+  .logo .app-name {
+    font-size: 1.1rem;
+  }
+  
+  .logo img {
+    height: 28px;
+  }
+  
+  .actions {
+    justify-content: center;
+  }
+  
+  .back-btn, .edit-btn, .delete-btn {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .card {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+  
+  .card h2 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  .error-message {
+    padding: 1rem;
+  }
+}
 </style>
