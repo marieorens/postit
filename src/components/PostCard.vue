@@ -6,7 +6,7 @@
             :style="{ backgroundColor: color }"
         >
             <h5 class="title">{{ title }}</h5>
-            <div class="content">{{ formattedContent }}</div>
+            <div class="content">{{ truncatedContent }}</div>
         </div>
 </template>
 
@@ -28,10 +28,21 @@ export default {
         formattedContent() {
             if (!this.content) return '';
             
+            let content = '';
             if (Array.isArray(this.content)) {
-                return this.content.join('\n');
+                content = this.content.join('\n');
+            } else {
+                content = this.content;
             }
-            return this.content;
+            
+            return content;
+        },
+        truncatedContent() {
+            const maxLength = 150; // Nombre max de caractères à afficher
+            if (this.formattedContent.length <= maxLength) {
+                return this.formattedContent;
+            }
+            return this.formattedContent.slice(0, maxLength) + '...';
         }
     },
     methods: {
@@ -55,6 +66,10 @@ export default {
     border: none;
     position: relative;
     transition: box-shadow 0.2s;
+    min-height: 140px;
+    max-height: 200px;
+    display: flex;
+    flex-direction: column;
 }
 .postcard:hover {
     box-shadow: 0 4px 16px;
@@ -73,15 +88,29 @@ export default {
     font-weight: bold;
     margin: 0 0 0.5rem 0;
     text-align: left;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height: 1.3;
+    max-height: 2.6em; 
 }
 .content {
-    color: white;
+    color: black;
     font-size: 1rem;
     margin: 0;
     text-align: left;
     background: none;
     box-shadow: none;
     padding: 0;
+    flex: 1;
+    overflow: hidden;
+    line-height: 1.4;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
 }
 .postcard:hover {
     box-shadow: 0 4px 16px;
@@ -102,11 +131,14 @@ export default {
     #contain {
         padding: 16px 12px 12px 12px;
         border-radius: 8px;
+        min-height: 120px;
+        max-height: 180px;
     }
     
     .title {
         font-size: 0.95rem;
         margin: 0 0 0.4rem 0;
+        max-height: 2.4em;
     }
     
     .content {
@@ -118,6 +150,8 @@ export default {
 @media (min-width: 481px) and (max-width: 768px) {
     #contain {
         padding: 20px 14px 14px 14px;
+        min-height: 130px;
+        max-height: 190px;
     }
     
     .title {

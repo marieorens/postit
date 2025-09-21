@@ -1,32 +1,34 @@
 <template>
   <div class="all-posts-container">
     <div :class="['main-content', showModal ? 'blurred' : '']">
-      <HeaderBar 
-        @create="handleCreate" 
+      <HeaderBar
+        @create="handleCreate"
         @deleteAll="handleDeleteAll"
         @search="handleSearch"
       />
-      
+
       <div v-if="loading" class="loading-indicator">
         <div class="spinner"></div>
         <p>Chargement des post-its...</p>
       </div>
-      
+
       <div v-else-if="error" class="error-message">
         <p>{{ error }}</p>
         <button @click="fetchNotes" class="retry-btn">Réessayer</button>
       </div>
-      
-      <div v-else-if="searchQuery && filteredNotes.length === 0" class="no-search-results">
+
+      <div
+        v-else-if="searchQuery && filteredNotes.length === 0"
+        class="no-search-results"
+      >
         <p>Aucun post-it ne correspond à votre recherche "{{ searchQuery }}"</p>
-        <button @click="clearSearch" class="clear-search-btn">Effacer la recherche</button>
+        <button @click="clearSearch" class="clear-search-btn">
+          Effacer la recherche
+        </button>
       </div>
-      
+
       <div v-else class="grid">
-        <div
-          v-for="post in filteredNotes"
-          :key="post.id"
-        >
+        <div v-for="post in filteredNotes" :key="post.id">
           <PostCard
             :title="post.title"
             :content="post.content"
@@ -35,8 +37,11 @@
             @details="goToDetails(post)"
           />
         </div>
-        
-        <div v-if="(Array.isArray(filteredNotes) && filteredNotes.length === 0) && !loading" class="no-posts">
+
+        <div
+          v-if="Array.isArray(filteredNotes) && filteredNotes.length === 0 && !loading"
+          class="no-posts"
+        >
           <p>Aucun post-it pour le moment. Créez-en un nouveau !</p>
         </div>
       </div>
@@ -63,15 +68,15 @@
 </template>
 
 <script setup>
-import PostCard from '../components/PostCard.vue';
-import HeaderBar from '../components/HeaderBar.vue';
-import PostModal from '../components/PostModal.vue';
-import ConfirmationDialog from '../components/ConfirmationDialog.vue';
-import { useNotesStore } from '../stores/notes';
-import { storeToRefs } from 'pinia';
-import { ref, onMounted, computed } from 'vue';
-import { useRouter } from 'vue-router';
-import { notificationService } from '../services/notification';
+import PostCard from "../components/PostCard.vue";
+import HeaderBar from "../components/HeaderBar.vue";
+import PostModal from "../components/PostModal.vue";
+import ConfirmationDialog from "../components/ConfirmationDialog.vue";
+import { useNotesStore } from "../stores/notes";
+import { storeToRefs } from "pinia";
+import { ref, onMounted, computed } from "vue";
+import { useRouter } from "vue-router";
+import { notificationService } from "../services/notification";
 
 const router = useRouter();
 const notesStore = useNotesStore();
@@ -79,25 +84,22 @@ const { notes, loading, error } = storeToRefs(notesStore);
 
 const showModal = ref(false);
 const modalEdit = ref(false);
-const modalTitle = ref('');
-const modalContent = ref('');
+const modalTitle = ref("");
+const modalContent = ref("");
 const modalEditId = ref(null);
-const searchQuery = ref('');
+const searchQuery = ref("");
 const showConfirmation = ref(false);
-
 
 const filteredNotes = computed(() => {
   if (!searchQuery.value) return notes.value || [];
-  
+
   const query = searchQuery.value.toLowerCase();
-  return Array.isArray(notes.value) 
-    ? notes.value.filter(note => 
-        note.title.includes(query) ||
-        note.content.includes(query)
+  return Array.isArray(notes.value)
+    ? notes.value.filter(
+        (note) => note.title.includes(query) || note.content.includes(query)
       )
     : [];
 });
-
 
 onMounted(async () => {
   await fetchNotes();
@@ -105,16 +107,16 @@ onMounted(async () => {
 
 async function fetchNotes() {
   await notesStore.fetchNotes();
-  console.log('Notes récupérées:', notes.value);
-  console.log('Notes sont-elles un tableau?', Array.isArray(notes.value));
-  console.log('Longueur des notes:', notes.value ? notes.value.length : 0);
-  console.log('Filtered Notes:', filteredNotes.value);
+  console.log("Notes récupérées:", notes.value);
+  console.log("Notes sont-elles un tableau?", Array.isArray(notes.value));
+  console.log("Longueur des notes:", notes.value ? notes.value.length : 0);
+  console.log("Filtered Notes:", filteredNotes.value);
 }
 
 function handleCreate() {
   modalEdit.value = false;
-  modalTitle.value = '';
-  modalContent.value = '';
+  modalTitle.value = "";
+  modalContent.value = "";
   modalEditId.value = null;
   showModal.value = true;
 }
@@ -133,31 +135,44 @@ function closeModal() {
 
 function getRandomColor() {
   const colors = [
-    '#FFD6A5', '#FDFFB6', '#CAFFBF', '#9BF6FF', '#A0C4FF', '#BDB2FF', '#FFC6FF', '#FFFFFC',
-    '#F1F8E9', '#FFFDE7', '#E1F5FE', '#F8BBD0', '#D1C4E9', '#FFECB3', '#C8E6C9'
+    "#FFD6A5",
+    "#FDFFB6",
+    "#CAFFBF",
+    "#9BF6FF",
+    "#A0C4FF",
+    "#BDB2FF",
+    "#FFC6FF",
+    "#FFFFFC",
+    "#F1F8E9",
+    "#FFFDE7",
+    "#E1F5FE",
+    "#F8BBD0",
+    "#D1C4E9",
+    "#FFECB3",
+    "#C8E6C9",
   ];
   return colors[Math.floor(Math.random() * colors.length)];
 }
 
 async function handleModalSubmit({ title, content }) {
   if (!title || !content || !title.trim() || !content.trim()) return;
-  
+
   try {
     if (modalEdit.value && modalEditId.value !== null) {
       await notesStore.updateNote(modalEditId.value, { title, content });
-      notificationService.success('Post-it mis à jour avec succès');
+      notificationService.success("Post-it mis à jour avec succès");
     } else {
       await notesStore.addNote({
         title,
         content,
         color: getRandomColor(),
       });
-      notificationService.success('Post-it créé avec succès');
+      notificationService.success("Post-it créé avec succès");
     }
     showModal.value = false;
   } catch (err) {
-    console.error('Erreur lors de la soumission du formulaire:', err);
-    notificationService.error('Erreur lors de la soumission du formulaire');
+    console.error("Erreur lors de la soumission du formulaire:", err);
+    notificationService.error("Erreur lors de la soumission du formulaire");
   }
 }
 
@@ -168,18 +183,18 @@ async function handleDeleteAll() {
 async function confirmDeleteAll() {
   try {
     await notesStore.deleteAll();
-    notificationService.success('Tous les post-its ont été supprimés');
+    notificationService.success("Tous les post-its ont été supprimés");
     showConfirmation.value = false;
   } catch (err) {
-    console.error('Erreur lors de la suppression de tous les post-its:', err);
-    notificationService.error('Erreur lors de la suppression des post-its');
+    console.error("Erreur lors de la suppression de tous les post-its:", err);
+    notificationService.error("Erreur lors de la suppression des post-its");
     showConfirmation.value = false;
   }
 }
 
 function goToDetails(post) {
   const postId = post._id || post.id;
-  console.log('Navigation vers détails du post-it avec ID:', postId);
+  console.log("Navigation vers détails du post-it avec ID:", postId);
   router.push(`/note/${postId}`);
 }
 
@@ -188,7 +203,7 @@ function handleSearch(query) {
 }
 
 function clearSearch() {
-  searchQuery.value = '';
+  searchQuery.value = "";
 }
 </script>
 
@@ -231,7 +246,7 @@ function clearSearch() {
     margin: 1rem auto;
     padding: 0.75rem;
   }
-  
+
   .grid {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -244,7 +259,7 @@ function clearSearch() {
     margin: 1.5rem auto;
     padding: 0.875rem;
   }
-  
+
   .grid {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1.25rem;
@@ -294,7 +309,9 @@ function clearSearch() {
   margin-bottom: 1rem;
 }
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .error-message {
